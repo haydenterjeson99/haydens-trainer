@@ -1,0 +1,16 @@
+name = "haydens-trainer-proxy"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# Non-secret config. Set your Pages origin here so the Worker will not answer
+# requests from anywhere else. Comma-separated; include localhost for dev.
+[vars]
+ALLOWED_ORIGIN = "https://YOUR-GITHUB-USERNAME.github.io,http://localhost:5173"
+ANTHROPIC_MODEL = "claude-opus-5"
+
+# Secrets are NOT set here. Push them with wrangler so they never touch the repo:
+#
+#   npx wrangler secret put STRAVA_CLIENT_ID
+#   npx wrangler secret put STRAVA_CLIENT_SECRET
+#   npx wrangler secret put STRAVA_REFRESH_TOKEN
+#   npx wrangler secret put ANTHROPIC_API_KEY

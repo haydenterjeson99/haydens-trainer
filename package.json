@@ -1,0 +1,22 @@
+{
+  "name": "haydens-trainer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Glance-and-go training week, read from and written back to Google Calendar.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  }
+}
