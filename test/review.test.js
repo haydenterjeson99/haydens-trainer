@@ -160,6 +160,36 @@ describe('calendar event payloads', () => {
     expect(parsed.sessions.filter((s) => s.isGroupRide).length).toBe(3);
   });
 
+  it('gives every session a real duration, including group rides', () => {
+    // Regression: group rides carried no durationMin, so titleFor produced
+    // "NaN:NaN" and toCalendarEvents built an end time Google rejects.
+    for (let w = 1; w <= 16; w += 1) {
+      for (const s of generateWeek(w, {}).sessions) {
+        expect(Number.isFinite(s.durationMin), `${s.name} week ${w}`).toBe(true);
+        expect(s.durationMin).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('emits no NaN and a valid, ordered time range on any generated event', () => {
+    for (let w = 1; w <= 16; w += 1) {
+      for (const e of toCalendarEvents(generateWeek(w, {}))) {
+        expect(JSON.stringify(e), `week ${w}: ${e.summary}`).not.toMatch(/NaN/);
+        const start = Date.parse(e.start.dateTime);
+        const end = Date.parse(e.end.dateTime);
+        expect(Number.isNaN(start)).toBe(false);
+        expect(Number.isNaN(end)).toBe(false);
+        expect(end).toBeGreaterThan(start);
+      }
+    }
+  });
+
+  it('prices a group ride door-to-door: transit both ways plus laps', () => {
+    const duck = events.find((e) => /^Duck Fleet Recovery Laps/.test(e.summary));
+    // Central: 26 min each way + 18 lap mi at 16 mph = 120 min.
+    expect(duck.summary).toContain('30 mi / 2:00');
+  });
+
   it('marks the contingency free so it does not count as planned volume', () => {
     const withThursday = toCalendarEvents(generateWeek(3, { lastThirdRide: 'Duck Fleet Coffee Laps' }));
     const c = withThursday.find((e) => /CONTINGENCY ONLY/.test(e.summary));

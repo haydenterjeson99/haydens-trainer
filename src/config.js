@@ -32,6 +32,12 @@ export const PARKS = {
 
 export const SPEEDS = { transit: 15, rpe2: 13, rpe3: 16, rpe34: 17 };
 
+// Lap speed by intensity band, used to derive a generated group ride's
+// door-to-door duration. Transit is priced at the park's own oneWayMin rather
+// than at a speed, so generated events land on the same numbers as the
+// hand-built Week 1 ones: Duck Fleet 2:00 vs 2:04, Rapha Thursday 2:17 vs 2:20.
+export const LAP_SPEEDS = { easy: 16, tempo: 17, hard: 19.5 };
+
 // --- Work schedule ---------------------------------------------------------
 export const WORK = {
   officeDays: [1, 2, 4], // Mon, Tue, Thu

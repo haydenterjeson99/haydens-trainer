@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "preview:static": "node build-preview.mjs",
     "test": "vitest run"
   },
   "dependencies": {

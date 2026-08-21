@@ -1,0 +1,444 @@
+<div class="shell">
+
+  <div class="banner">
+    Static preview of <strong>haydens-trainer</strong> — real data, run Sunday 16 Aug 2026.
+    Cards expand, bar segments have tooltips, buttons are inert.
+    Styled from <code>src/styles.css</code>, inlined verbatim.
+  </div>
+
+  <div class="top">
+    <div class="weeknav">
+      <button class="nav" aria-label="Previous week">&#8249;</button>
+      <div class="weeknav-label">
+        <div class="weeknav-title">Week 1</div>
+        <div class="quiet small">17 &ndash; 23 August 2026</div>
+      </div>
+      <button class="nav" aria-label="Next week">&#8250;</button>
+    </div>
+    <div class="tabs">
+      <button class="on" data-tab="week">Week</button>
+      <button data-tab="review">Review</button>
+    </div>
+  </div>
+
+  <!-- ===================== WEEK ===================== -->
+  <div id="tab-week">
+    <section class="summary">
+      <div class="block-head">
+        <span class="pill">Block 1 &middot; Consistency</span>
+        <span class="pill pill-quiet">Week 1 of 4</span>
+        <span class="pill pill-warn">Revised &mdash; Duck Fleet dropped</span>
+      </div>
+
+      <div class="floor-card">
+        <div class="floor-top">
+          <div class="floor-label">Floor</div>
+          <div class="floor-num">120<span class="floor-unit">mi</span></div>
+        </div>
+        <div class="bar">
+          <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+          <div class="bar-floor" style="left:85.7%" data-label="floor"></div>
+        </div>
+        <div class="floor-foot">
+          <span>0 mi ridden</span>
+          <span class="quiet">120 to go</span>
+          <span class="quiet">target 140 &middot; planned 138</span>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">Weekday bike</div>
+          <div class="stat-value">88<span class="stat-unit">mi</span></div>
+          <div class="bar"><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div></div>
+          <div class="stat-sub">target 101 &middot; weekend 50</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Run</div>
+          <div class="stat-value">4<span class="stat-unit">mi</span></div>
+          <div class="bar"><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div></div>
+          <div class="stat-sub">target 4</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Sessions</div>
+          <div class="stat-value">0<span class="stat-unit">/ 7</span></div>
+          <div class="stat-sub">10.1 h planned</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Group rides</div>
+          <div class="stat-value">0<span class="stat-unit">/ 3</span></div>
+          <div class="stat-sub">1 skipped, 2 live. The number that predicts the week.</div>
+        </div>
+      </div>
+
+      <div class="split-row">
+        <div class="split-head">
+          <span>Lap vs transit</span>
+          <span class="quiet">29% transit</span>
+        </div>
+        <div class="split-bar">
+          <div class="seg seg-lap" style="flex:98" data-tip="Laps &mdash; 98 mi, 71%"><span>98 lap</span></div>
+          <div class="seg seg-transit" style="flex:40" data-tip="Transit &mdash; 40 mi, 29%"><span>40 transit</span></div>
+        </div>
+        <div class="split-note quiet">Transit is real riding, but it is not the workout.</div>
+      </div>
+
+      <div class="split-row">
+        <div class="split-head">
+          <span>Intensity</span>
+          <span class="warn">54% tempo or harder &middot; guide is 20%</span>
+        </div>
+        <div class="split-bar">
+          <div class="seg seg-easy" style="flex:63" data-tip="Easy &mdash; 63 mi, 46%"><span>63 easy</span></div>
+          <div class="seg seg-tempo" style="flex:36" data-tip="Tempo &mdash; 36 mi, 26% &middot; Rapha Thursday"><span>36 tempo</span></div>
+          <div class="seg seg-hard" style="flex:39" data-tip="Hard &mdash; 39 mi, 28% &middot; Good Guys"><span>39 hard</span></div>
+        </div>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--easy)"></i>Easy &middot; RPE 2&ndash;4</span>
+          <span><i class="swatch" style="background:var(--tempo)"></i>Tempo &middot; RPE 5&ndash;6</span>
+          <span><i class="swatch" style="background:var(--hard)"></i>Hard &middot; RPE 7&ndash;9</span>
+        </div>
+        <div class="split-note warn">Worst of the whole build. Dropping Monday removed 30 easy miles and changed nothing else &mdash; 49% became 54%.</div>
+        <details class="tableview">
+          <summary>Table view</summary>
+          <table>
+            <thead><tr><th>Band</th><th>Session</th><th>Miles</th></tr></thead>
+            <tbody>
+              <tr><td>Easy</td><td>Recovery Spin, Long Ride, Sunday Ride</td><td>63</td></tr>
+              <tr><td>Tempo</td><td>Rapha Thursday Night Delight</td><td>36</td></tr>
+              <tr><td>Hard</td><td>Good Guys Night Laps</td><td>39</td></tr>
+              <tr><td><strong>Total</strong></td><td></td><td><strong>138</strong></td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </section>
+
+    <div class="conflict">
+      <div class="conflict-head">Imported club event &mdash; last Sunday</div>
+      <p><strong>DAS HEISSE RENNEN &middot; Good Guys Racing</strong> &mdash; ridden 16 Aug, 38.7 mi at 16.1 mph, 1,647 ft.</p>
+      <p class="quiet">No plan metadata and no <code>WEEK n &middot; BLOCK n</code> header, so it is not counted as
+      planned volume. It is surfaced because it is the reason this week looks the way it does: it fired
+      <code>sundayConflict</code> in the rotation and took Duck Fleet Monday off the calendar.</p>
+    </div>
+
+    <div class="days">
+      <div>
+        <div class="day-head">Mon 17 Aug &middot; rest</div>
+        <div class="card card-easy status-skipped">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Mon</span><span class="card-time">5:45am</span></span>
+            <span class="card-main">
+              <span class="card-title">Duck Fleet Recovery Laps <span class="tag tag-group">Group</span></span>
+              <span class="card-meta"><span>30 mi</span><span>2:04</span><span>RPE 3</span><span class="quiet">18 lap + 12 transit</span></span>
+            </span>
+            <span class="card-status status-chip-skipped">Skipped</span>
+          </button>
+          <div class="card-body">
+            <p class="why why-bad"><strong>Why:</strong> Das Heisse Rennen ridden Sun 16 Aug, 38.7 mi and 1,647 ft,
+            after 78.6 mi at the Gunks on Saturday. The Sunday 10:00pm lights-out was not viable, and a big Sunday
+            takes Monday with it.</p>
+            <div class="field-row">
+              <label>Status<select><option selected>skipped</option><option>planned</option><option>done</option><option>partial</option><option>moved</option></select></label>
+              <label>Actual mi<input value="" placeholder="&mdash;"></label>
+            </div>
+            <p class="quiet small" style="margin-top:12px;text-transform:none;letter-spacing:0">Written back to the
+            event description as <code>[trainer] status=skipped</code>. Marked free, so it drops out of planned volume.</p>
+          </div>
+        </div>
+        <div class="rest">No session. Wake 7:00am, lights out 10:45pm.</div>
+      </div>
+
+      <div>
+        <div class="day-head">Tue 18 Aug &middot; leave on time</div>
+        <div class="card card-hard">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Tue</span><span class="card-time">7:00pm</span></span>
+            <span class="card-main">
+              <span class="card-title">Good Guys Night Laps <span class="tag tag-group">Group</span> <span class="tag tag-load">Load-bearing</span></span>
+              <span class="card-meta"><span>39 mi</span><span>2:45</span><span>RPE 7-8</span><span class="quiet">27 lap + 12 transit</span></span>
+            </span>
+            <span class="card-status">&nbsp;</span>
+          </button>
+          <div class="card-body">
+            <p class="quiet small">Out of the office 5:45pm &middot; roll out 7:10pm &middot; group start 8:00pm &middot; home 9:35pm.</p>
+            <p class="why">Central Park this week. 11 Aug was Prospect, so the anchor puts 18 Aug in Central &mdash;
+            the app computes it rather than assuming. Confirm before you roll.</p>
+            <p class="quiet small" style="margin-top:10px">Lights required, sunset 7:49pm.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-head">Wed 19 Aug &middot; WFH</div>
+        <div class="card card-easy">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Wed</span><span class="card-time">12:15pm</span></span>
+            <span class="card-main">
+              <span class="card-title">Recovery Spin</span>
+              <span class="card-meta"><span>13 mi</span><span>0:55</span><span>RPE 2</span><span class="quiet">5 lap + 8 transit</span></span>
+            </span>
+            <span class="card-status">&nbsp;</span>
+          </button>
+          <div class="card-body">
+            <p class="quiet small">Transit is most of this ride, which is fine at RPE 2. If you would rather skip the
+            park and spin easy from the door, do that.</p>
+          </div>
+        </div>
+        <div class="card card-run">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Wed</span><span class="card-time">5:45pm</span></span>
+            <span class="card-main">
+              <span class="card-title">Easy Run</span>
+              <span class="card-meta"><span>2 mi</span><span>0:20</span><span>9:00/mi</span></span>
+            </span>
+            <span class="card-status">&nbsp;</span>
+          </button>
+          <div class="card-body"><p class="quiet small">Run 1 of 2. Block 1 builds 4 &rarr; 6 &rarr; 8 &rarr; 10 mi a week.</p></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-head">Thu 20 Aug &middot; early out</div>
+        <div class="card card-tempo">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Thu</span><span class="card-time">6:00pm</span></span>
+            <span class="card-main">
+              <span class="card-title">Rapha Thursday Night Delight <span class="tag tag-group">Group</span> <span class="tag tag-load">Load-bearing</span></span>
+              <span class="card-meta"><span>36 mi</span><span>2:20</span><span>RPE 5-6</span><span class="quiet">24 lap + 12 transit</span></span>
+            </span>
+            <span class="card-status">&nbsp;</span>
+          </button>
+          <div class="card-body">
+            <p class="why why-bad"><strong>No longer droppable.</strong> This card said &ldquo;drop this one first&rdquo;
+            when Duck Fleet Monday was on the calendar. Monday came off and the margin went with it. Miss this and the
+            week lands at 102 against a 120 floor &mdash; riding the Friday contingency only recovers it to 118.</p>
+            <p class="quiet small" style="margin-top:10px">The only EARLY OUT of the week: leave work 5:30pm.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-head">Fri 21 Aug &middot; WFH &middot; bike rest</div>
+        <div class="card card-easy card-contingency">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Fri</span><span class="card-time">6:50am</span></span>
+            <span class="card-main">
+              <span class="card-title">Endurance Ride <span class="tag tag-contingency">Contingency</span></span>
+              <span class="card-meta"><span>16 mi</span><span>1:02</span><span>RPE 3-4</span><span class="quiet">8 lap + 8 transit</span></span>
+            </span>
+            <span class="card-status">Free</span>
+          </button>
+          <div class="card-body">
+            <p class="quiet small">Only if you missed Thursday. Transparent on the calendar, so it never counts
+            toward planned volume.</p>
+          </div>
+        </div>
+        <div class="card card-run">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Fri</span><span class="card-time">5:30pm</span></span>
+            <span class="card-main">
+              <span class="card-title">Easy Run</span>
+              <span class="card-meta"><span>2 mi</span><span>0:20</span><span>9:00/mi</span></span>
+            </span>
+            <span class="card-status">&nbsp;</span>
+          </button>
+          <div class="card-body"><p class="quiet small">Run 2 of 2. Running never compromises cycling volume.</p></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-head">Sat 22 Aug</div>
+        <div class="card card-easy">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Sat</span><span class="card-time">8:00am</span></span>
+            <span class="card-main">
+              <span class="card-title">Long Ride</span>
+              <span class="card-meta"><span>30 mi</span><span>2:09</span><span>RPE 3</span><span class="quiet">Gravel</span></span>
+            </span>
+            <span class="card-status">&nbsp;</span>
+          </button>
+          <div class="card-body">
+            <p class="why"><strong>Rebuilt 20 &rarr; 30.</strong> Saturday is the shock absorber: the generator sets it
+            to whatever brings the week to the block target of 140, then clamps 15&ndash;45. Committed is 108, so it
+            lands at 30. That is rebuilding from the target, not repaying Monday &mdash; repaying Monday would be 50.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-head">Sun 23 Aug</div>
+        <div class="card card-easy">
+          <button class="card-head">
+            <span class="card-when"><span class="card-day">Sun</span><span class="card-time">9:00am</span></span>
+            <span class="card-main">
+              <span class="card-title">Sunday Ride <span class="tag tag-priority">Priority</span> <span class="tag tag-load">Load-bearing</span></span>
+              <span class="card-meta"><span>20 mi</span><span>1:16</span><span>RPE 3</span><span class="quiet">12 lap + 8 transit</span></span>
+            </span>
+            <span class="card-status">&nbsp;</span>
+          </button>
+          <div class="card-body">
+            <p class="quiet small">You ride 24% of Sundays. The highest-leverage session in the 16-week build. This
+            week it is also the difference between clearing the floor and not.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scenarios">
+      <h3 style="margin-top:0">If you drop one</h3>
+      <ul>
+        <li><span>without Good Guys Night Laps</span><span class="bad">99 mi &middot; under</span></li>
+        <li><span>without Rapha Thursday Night Delight</span><span class="bad">102 mi &middot; under</span></li>
+        <li><span>without Sunday Ride</span><span class="bad">118 mi &middot; under</span></li>
+      </ul>
+      <p class="bad"><strong>No droppable session left this week.</strong></p>
+      <p class="quiet">With three group rides, every one of these cleared 120 and the week could absorb a miss. With
+      two, none of them do. That is the cost of Sunday&rsquo;s race, and it is worth knowing on Monday rather than
+      discovering on Thursday.</p>
+    </div>
+  </div>
+
+  <!-- ===================== REVIEW ===================== -->
+  <div id="tab-review" class="hide">
+    <section class="review">
+      <h2>Weekly review</h2>
+      <p class="quiet">Sunday 6:00pm. Score the week, then generate the next one. Missed volume never rolls forward.</p>
+
+      <div class="review-toggles">
+        <label class="check"><input type="checkbox"> Sunday lights-out held (10:00pm)</label>
+        <label class="check"><input type="checkbox" checked> Big Sunday &mdash; race or long day</label>
+      </div>
+      <p class="quiet small" style="margin-top:-8px">Auto-ticked: an imported club event was found on Sunday.</p>
+
+      <div class="scorecard">
+        <div class="verdict good">Baseline week &mdash; 210.1 mi. No plan to score against yet.</div>
+        <p class="quiet small">10&ndash;16 Aug sits before <code>PLAN_START</code>, so <code>reconcile()</code> has
+        nothing to match. Read it as the starting point, not a result.</p>
+
+        <table class="score-table">
+          <tbody>
+            <tr><td>Bike</td><td>210.1 mi</td></tr>
+            <tr><td>Weekday / weekend</td><td>80.6 / 129.5 mi</td></tr>
+            <tr class="row-key"><td>Weekend share</td><td>62%</td></tr>
+            <tr><td>Run</td><td>7.2 mi</td></tr>
+            <tr><td>Time on the bike</td><td>13.8 h</td></tr>
+            <tr><td>Elevation</td><td>12,321 ft</td></tr>
+            <tr class="row-key"><td>Days with a ride</td><td>4 / 7</td></tr>
+            <tr><td>Sunday bedtime</td><td class="bad">missed</td></tr>
+          </tbody>
+        </table>
+
+        <div class="split-row" style="margin-top:16px">
+          <div class="split-head"><span>Where the miles were</span><span class="quiet">Mon&ndash;Sun</span></div>
+          <div class="split-bar" style="height:36px">
+            <div class="seg seg-hard" style="flex:40.23" data-tip="Tue &mdash; GGR Night Laps, 40.2 mi at 19.4 mph"><span>Tue 40</span></div>
+            <div class="seg seg-tempo" style="flex:40.4" data-tip="Thu &mdash; Traffic jam in the park, 40.4 mi at 18.0 mph"><span>Thu 40</span></div>
+            <div class="seg seg-easy" style="flex:86.21" data-tip="Sat &mdash; Gunks gravel 78.6 mi plus 7.6 transit, 6,996 ft"><span>Sat 86</span></div>
+            <div class="seg seg-hard" style="flex:43.27" data-tip="Sun &mdash; Das Heisse Rennen 38.7 mi plus 4.6 transit"><span>Sun 43</span></div>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:var(--easy)"></i>Easy</span>
+            <span><i class="swatch" style="background:var(--tempo)"></i>Tempo</span>
+            <span><i class="swatch" style="background:var(--hard)"></i>Hard</span>
+            <span>&mdash; width is miles, colour is intensity</span>
+          </div>
+          <div class="split-note quiet">Mon, Wed and Fri are missing entirely. That is precisely what Block 1 exists to fill.</div>
+          <details class="tableview">
+            <summary>Table view</summary>
+            <table>
+              <thead><tr><th>Day</th><th>Activity</th><th>Miles</th></tr></thead>
+              <tbody>
+                <tr><td>Mon</td><td>Evening Run only, no ride</td><td>0</td></tr>
+                <tr><td>Tue</td><td>GGR Night Laps &middot; hard</td><td>40.2</td></tr>
+                <tr><td>Wed</td><td>Morning Walk only, no ride</td><td>0</td></tr>
+                <tr><td>Thu</td><td>Traffic jam in the park &middot; tempo</td><td>40.4</td></tr>
+                <tr><td>Fri</td><td>Afternoon Run only, no ride</td><td>0</td></tr>
+                <tr><td>Sat</td><td>Gunks gravel plus transit &middot; easy</td><td>86.2</td></tr>
+                <tr><td>Sun</td><td>Das Heisse Rennen plus transit &middot; hard</td><td>43.3</td></tr>
+                <tr><td><strong>Total</strong></td><td></td><td><strong>210.1</strong></td></tr>
+              </tbody>
+            </table>
+          </details>
+        </div>
+
+        <div class="missed">
+          <h3>Read the week</h3>
+          <p class="why">210 miles is the 211 half of the 211-then-41 oscillation this plan exists to stop. It is not
+          a good week &mdash; it is the pattern. 62% of the volume landed on Saturday and Sunday, two days carried
+          8,600 ft, and Monday, Wednesday and Friday had no ride at all. Block 1 is not trying to beat 210. It is
+          trying to move those weekend miles onto the three empty days and have the number still say 210 in a month,
+          without the 41-mile week that normally follows.</p>
+        </div>
+
+        <div class="missed">
+          <h3>Unplanned riding</h3>
+          <ul>
+            <li>Tue GGR Night Laps &mdash; 40.2 mi</li>
+            <li>Thu Traffic jam in the park &mdash; 40.4 mi</li>
+            <li>Sat Gunks gravel &mdash; 78.6 mi</li>
+            <li>Sun Das Heisse Rennen &mdash; 38.7 mi</li>
+            <li class="quiet">plus 3 transit rides, 12.2 mi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plan-preview">
+        <h3>Week 1 &middot; Block 1 &mdash; generated</h3>
+        <p class="quiet">138 bike mi / 4 run mi &middot; floor 120 &middot; target 140 &middot; 2 under target</p>
+        <ul class="rotation-notes">
+          <li>Good Guys is in Central Park this week (it alternates). Confirm before you roll.</li>
+          <li>Duck Fleet Monday is off. A big Sunday takes Monday with it, and riding it tired is the opposite of a
+          recovery ride. The week still clears the floor without it.</li>
+        </ul>
+        <ul class="plan-list">
+          <li><span class="plan-day">Tue</span><span class="plan-name">Good Guys Night Laps <span class="tag tag-group">Group</span></span><span class="plan-mi">39 mi</span><span class="quiet">Central Park</span></li>
+          <li><span class="plan-day">Wed</span><span class="plan-name">Recovery Spin</span><span class="plan-mi">13 mi</span><span class="quiet">Prospect Park</span></li>
+          <li><span class="plan-day">Wed</span><span class="plan-name">Easy Run</span><span class="plan-mi">2 mi</span><span class="quiet">from the door</span></li>
+          <li><span class="plan-day">Thu</span><span class="plan-name">Rapha Thursday Night Delight <span class="tag tag-group">Group</span></span><span class="plan-mi">36 mi</span><span class="quiet">Central Park</span></li>
+          <li class="quiet"><span class="plan-day">Fri</span><span class="plan-name">Endurance Ride <span class="tag tag-contingency">Contingency</span></span><span class="plan-mi">16 mi</span><span class="quiet">Prospect Park</span></li>
+          <li><span class="plan-day">Fri</span><span class="plan-name">Easy Run</span><span class="plan-mi">2 mi</span><span class="quiet">from the door</span></li>
+          <li><span class="plan-day">Sat</span><span class="plan-name">Long Ride</span><span class="plan-mi">30 mi</span><span class="quiet">from the door</span></li>
+          <li><span class="plan-day">Sun</span><span class="plan-name">Sunday Ride <span class="tag tag-priority">Priority</span></span><span class="plan-mi">20 mi</span><span class="quiet">Prospect Park</span></li>
+        </ul>
+        <button class="btn btn-primary">Write 8 events to Training</button>
+        <p class="good small" style="margin-top:12px">Applied to the Training calendar on 16 Aug. Parsed back and
+        reconciled to 138 mi &mdash; 13 of 13 checks pass.</p>
+      </div>
+
+      <div class="note">
+        <h3 style="margin-top:0">Palette notes</h3>
+        <p>The four brand hues are used as <strong>fills only</strong>. Ink sits on top of every one of them at
+        4.70:1 or better, which is what makes them legal here. Against the ivory canvas the fills themselves run
+        <span class="mono">#34A853</span> 2.90:1, <span class="mono">#4285F4</span> 3.38:1,
+        <span class="mono">#EA4335</span> 3.72:1 and <span class="mono">#FBBC05</span> 1.62:1 &mdash; so every segment
+        is directly labelled, separated by a 2px gap, and backed by a table view. That is the required relief, not
+        decoration.</p>
+        <p>Text never wears a brand hue. It uses the stepped-down variants
+        (<span class="mono">#1E7E34</span>, <span class="mono">#8A6100</span>, <span class="mono">#C5221F</span>,
+        <span class="mono">#1A66D0</span>), each above 4.5:1 on ivory.</p>
+        <p>Light only, on every device. <span class="mono">color-scheme: light</span> is declared so the browser
+        does not darken form controls, scrollbars or autofill underneath an ivory page when the OS is in dark mode.
+        A dark theme, if it is ever wanted, needs its own re-stepped values rather than an inversion of these.</p>
+        <p>Colour-vision check on the intensity trio: worst adjacent pair is tempo&ndash;easy at &Delta;E 13.0 under
+        protanopia and 25.4 in normal vision, both clear of the floors. Runs are ink rather than a fifth hue, and
+        transit is a warm neutral, so the three intensity bands are the only place colour carries meaning.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    var week = b.dataset.tab === 'week';
+    document.getElementById('tab-week').classList.toggle('hide', !week);
+    document.getElementById('tab-review').classList.toggle('hide', week);
+    window.scrollTo(0, 0);
+  });
+});
+document.querySelectorAll('.card-head').forEach(function (h) {
+  h.addEventListener('click', function () { h.parentElement.classList.toggle('open'); });
+});
+</script>

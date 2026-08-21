@@ -6,7 +6,7 @@
 // oscillation the whole plan exists to stop.
 
 import {
-  GROUP_RIDES, PARKS, TIMEZONE,
+  GROUP_RIDES, PARKS, TIMEZONE, LAP_SPEEDS,
 } from '../config.js';
 import {
   addDays, isoDay, weekNumberFor, targetsFor, isRecoveryWeek, goodGuysParkFor,
@@ -173,6 +173,23 @@ function doorToDoor(title, park) {
 }
 
 /**
+ * Door-to-door minutes for a group ride: the park's own transit time both ways,
+ * plus the laps at the band's speed.
+ *
+ * Without this the generated group rides carry no duration at all, and every
+ * one of them renders as `NaN:NaN` in the title with an unparseable end time —
+ * which Google rejects. The solo sessions were never affected because they
+ * carry an explicit durationMin, so the gap only ever showed up on the three
+ * most important events of the week.
+ */
+function groupRideDuration(title, park) {
+  const g = GROUP_RIDES[title];
+  const p = PARKS[park] || PARKS[g.park] || PARKS.central;
+  const lapMin = (g.lapMi / (LAP_SPEEDS[g.band] ?? LAP_SPEEDS.easy)) * 60;
+  return Math.round(p.oneWayMin * 2 + lapMin);
+}
+
+/**
  * Build next week's session list. Never carries missed volume forward — the
  * numbers come from the block target, not from what went wrong last week.
  */
@@ -198,6 +215,8 @@ export function generateWeek(weekNumber, opts = {}) {
       band: g.band,
       park,
       isGroupRide: true,
+      durationMin: groupRideDuration(r.title, park),
+      startTime: g.rollOut,
       groupStart: g.groupStart,
       rollOut: g.rollOut,
       wake: g.wake || null,
