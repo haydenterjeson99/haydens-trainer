@@ -106,20 +106,22 @@ describe('block identity', () => {
     expect(weekNumberFor('2026-08-17')).toBe(1);
     const t = targetsFor(1);
     expect(t.block).toBe(1);
-    expect(t.floor).toBe(120);
-    expect(t.target).toBe(140);
+    expect(t.floor).toBe(170);
+    expect(t.target).toBe(200);
     expect(t.runTarget).toBe(4);
   });
 
   it('drops volume on the recovery week without changing the block', () => {
     const t = targetsFor(4);
     expect(t.isRecoveryWeek).toBe(true);
-    expect(t.floor).toBe(84);
-    expect(t.target).toBe(98);
+    expect(t.floor).toBe(119);
+    expect(t.target).toBe(140);
   });
 
-  it('shows the current block, not the 200 endpoint', () => {
-    expect(targetsFor(5).target).toBe(165);
+  it('holds 170/200 flat across every block — no ramp, raised 2026-08-20', () => {
+    expect(targetsFor(5).floor).toBe(170);
+    expect(targetsFor(5).target).toBe(200);
+    expect(targetsFor(13).floor).toBe(170);
     expect(targetsFor(13).target).toBe(200);
   });
 });
@@ -143,9 +145,12 @@ describe('floor scenarios', () => {
     expect(without('Good Guys Night Laps')).toBe(119);
   });
 
-  it('leaves no single group ride load-bearing', () => {
+  it('no longer clears the raised floor on its own — Week 1 predates the 2026-08-20 raise', () => {
+    // Week 1 was hand-built on the calendar under the old 120 floor (158 mi
+    // total). The floor is now 170, so this specific week falls short even
+    // with every group ride intact — it's a transition week, not a bug.
     const groups = s.filter((x) => ['Duck Fleet Recovery Laps', 'Rapha Thursday Night Delight'].includes(x.name));
-    expect(groups.every((x) => x.clearsFloor)).toBe(true);
+    expect(groups.every((x) => x.clearsFloor)).toBe(false);
   });
 });
 

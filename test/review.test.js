@@ -230,7 +230,7 @@ describe('reconciliation', () => {
   it('reports the floor verdict against actual, not planned', () => {
     expect(card.actualBikeMi).toBe(109.3);
     expect(card.clearedFloor).toBe(false);
-    expect(card.floor).toBe(120);
+    expect(card.floor).toBe(170);
   });
 });
 

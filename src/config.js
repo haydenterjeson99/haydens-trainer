@@ -13,11 +13,14 @@ export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/calendar.events';
 // Block 1 Week 1 starts Monday 17 Aug 2026.
 export const PLAN_START = '2026-08-17';
 
+// Raised 2026-08-20, at Hayden's request: 170 floor / 200 target from Week 1
+// on, not phased in over the block ramp. He's confident he can hold the
+// number now and wants the structure to hold him to it rather than easing in.
 export const BLOCKS = [
-  { n: 1, name: 'Consistency', weeks: [1, 4], floor: 120, target: 140, runTarget: [4, 6, 8, 10] },
-  { n: 2, name: 'Base', weeks: [5, 8], floor: 150, target: 165, runTarget: [10, 10, 10, 10] },
-  { n: 3, name: 'Build', weeks: [9, 12], floor: 170, target: 185, runTarget: [10, 10, 10, 10] },
-  { n: 4, name: 'Target', weeks: [13, 16], floor: 185, target: 200, runTarget: [10, 10, 10, 10] },
+  { n: 1, name: 'Consistency', weeks: [1, 4], floor: 170, target: 200, runTarget: [4, 6, 8, 10] },
+  { n: 2, name: 'Base', weeks: [5, 8], floor: 170, target: 200, runTarget: [10, 10, 10, 10] },
+  { n: 3, name: 'Build', weeks: [9, 12], floor: 170, target: 200, runTarget: [10, 10, 10, 10] },
+  { n: 4, name: 'Target', weeks: [13, 16], floor: 170, target: 200, runTarget: [10, 10, 10, 10] },
 ];
 
 // Every 4th week of a block drops ~30% in volume while holding frequency.
