@@ -30,15 +30,22 @@ export default function Review({ week, onWriteWeek }) {
     setError(null);
     try {
       let activities = [];
+      let usedStrava = false;
       if (proxyConfigured()) {
-        activities = await stravaActivities({
-          after: `${week.weekStart}T00:00:00`,
-          before: `${addDays(week.weekEnd, 1)}T00:00:00`,
-        });
+        try {
+          activities = await stravaActivities({
+            after: `${week.weekStart}T00:00:00`,
+            before: `${addDays(week.weekEnd, 1)}T00:00:00`,
+          });
+          usedStrava = true;
+        } catch (err) {
+          // Strava is best-effort. The cards carry enough to score the week.
+          setError(`${err.message} Scoring from the cards instead.`);
+        }
       }
       const rec = reconcile(week, activities);
       const card = buildScorecard(week, rec);
-      setResult({ ...rec, card, usedStrava: proxyConfigured() });
+      setResult({ ...rec, card, usedStrava });
       setStep('scored');
     } catch (err) {
       setError(err.message);

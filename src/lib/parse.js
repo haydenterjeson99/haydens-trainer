@@ -120,7 +120,11 @@ export function toSession(ev) {
     lapMi = Math.max(0, distanceMi - transitMi);
   }
 
-  const contingency = /CONTINGENCY ONLY/i.test(summary) || ev.transparency === 'transparent';
+  const meta = parseMeta(description);
+  // A skipped session goes transparent so it stops blocking time. That must not
+  // turn it into a contingency, or the miss vanishes from planned volume.
+  const contingency = /CONTINGENCY ONLY/i.test(summary)
+    || (ev.transparency === 'transparent' && meta.status !== 'skipped');
 
   return {
     id: ev.id,
@@ -145,7 +149,7 @@ export function toSession(ev) {
     // Contingency events are free/transparent and must not count as planned volume.
     countsAsPlanned: !contingency,
     band: bandOf({ discipline, rpe }),
-    meta: parseMeta(description),
+    meta,
     body: stripMeta(description),
     location: ev.location || null,
     routeUrl: extractRoute(description),

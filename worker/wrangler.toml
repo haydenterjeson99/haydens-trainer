@@ -5,7 +5,7 @@ compatibility_date = "2026-01-01"
 # Non-secret config. Set your Pages origin here so the Worker will not answer
 # requests from anywhere else. Comma-separated; include localhost for dev.
 [vars]
-ALLOWED_ORIGIN = "https://YOUR-GITHUB-USERNAME.github.io,http://localhost:5173"
+ALLOWED_ORIGIN = "https://haydenterjeson99.github.io,http://localhost:5173"
 ANTHROPIC_MODEL = "claude-opus-5"
 
 # Secrets are NOT set here. Push them with wrangler so they never touch the repo:

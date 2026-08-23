@@ -103,7 +103,9 @@ async function call(path, { method = 'GET', body, params } = {}) {
   }
   if (!res.ok) {
     const text = await res.text().catch(() => '');
-    throw new Error(`Calendar ${method} ${path} failed (${res.status}). ${text.slice(0, 300)}`);
+    const err = new Error(`Calendar ${method} ${path} failed (${res.status}). ${text.slice(0, 300)}`);
+    err.status = res.status;
+    throw err;
   }
   return res.status === 204 ? null : res.json();
 }

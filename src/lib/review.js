@@ -32,7 +32,7 @@ export function reconcile(week, activities = []) {
       .sort((x, y) => Math.abs(x.a.distanceMi - s.distanceMi) - Math.abs(y.a.distanceMi - s.distanceMi))[0];
 
     if (!i) {
-      matches.push({ session: s, activity: null, status: 'skipped', ratio: 0 });
+      matches.push(fromCard(s));
       continue;
     }
     pool.splice(i.idx, 1);
@@ -46,6 +46,31 @@ export function reconcile(week, activities = []) {
   }
 
   return { matches, unplanned: pool };
+}
+
+/**
+ * No Strava activity matched. The card is the fallback: if he marked it done or
+ * partial, that is what happened, whether or not the ride reached Strava.
+ */
+function fromCard(s) {
+  const meta = s.meta || {};
+  if (meta.status !== 'done' && meta.status !== 'partial') {
+    return { session: s, activity: null, status: 'skipped', ratio: 0 };
+  }
+  const distanceMi = meta.actualMi ?? s.distanceMi;
+  return {
+    session: s,
+    activity: {
+      name: s.name,
+      date: s.date,
+      discipline: s.discipline,
+      distanceMi,
+      movingMin: meta.actualMin ?? s.durationMin,
+      fromCard: true,
+    },
+    status: meta.status,
+    ratio: s.distanceMi ? r1(distanceMi / s.distanceMi) : 1,
+  };
 }
 
 export function buildScorecard(week, { matches, unplanned }) {
@@ -464,12 +489,33 @@ function fmt(hhmm) {
   return `${hr}:${String(m).padStart(2, '0')}${ampm}`;
 }
 
+/**
+ * A stable id for one session, derived from the week and the session itself so
+ * the same session always produces the same id. Google rejects an insert whose
+ * iCalUID already exists (409), which is what makes a retry after a half-written
+ * week safe: the events already on the calendar are refused, not duplicated.
+ */
+function uidFor(plan, s) {
+  const slug = `${s.name}${s.contingency ? '-contingency' : ''}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+  return `ht-w${plan.weekNumber}-${s.date.replace(/-/g, '')}-${slug}@haydens-trainer`;
+}
+
 /** Turn a generated plan into Google Calendar event bodies, ready to insert. */
 export function toCalendarEvents(plan) {
+  // Two sessions of the same name on the same day would otherwise share a uid,
+  // and the second insert would be refused as a duplicate of the first.
+  const seen = new Map();
   return plan.sessions.map((s) => {
     const start = s.rollOut && s.wake ? s.wake : (s.startTime || s.rollOut);
     const dayIndex = isoDay(s.date);
+    const base = uidFor(plan, s);
+    const n = (seen.get(base) || 0) + 1;
+    seen.set(base, n);
     return {
+      iCalUID: n === 1 ? base : base.replace('@', `-${n}@`),
       summary: titleFor(s),
       description: descriptionFor(s, plan, dayIndex),
       location: s.park ? `${PARKS[s.park].name}, ${s.park === 'central' ? 'New York' : 'Brooklyn'}, NY` : undefined,

@@ -96,7 +96,14 @@ export default function App() {
     for (const ev of events) {
       // Sequential on purpose: Calendar rate-limits bursts, and a half-written
       // week is worse than a slow one.
-      await gcal.insertEvent(ev);
+      try {
+        await gcal.insertEvent(ev);
+      } catch (err) {
+        // Each event carries a deterministic iCalUID, so Google refuses one that
+        // is already on the calendar. That is a retry after a failed write
+        // finding its own earlier work, not an error — skip it and carry on.
+        if (err.status !== 409) throw err;
+      }
     }
   };
 
@@ -258,7 +265,9 @@ export default function App() {
         </>
       )}
 
-      {week && tab === 'review' && <Review week={week} onWriteWeek={onWriteWeek} />}
+      {week && tab === 'review' && (
+        <Review key={week.weekStart} week={week} onWriteWeek={onWriteWeek} />
+      )}
     </main>
   );
 }

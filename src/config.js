@@ -5,7 +5,10 @@ export const TIMEZONE = 'America/New_York';
 
 export const GOOGLE_CLIENT_ID = import.meta.env?.VITE_GOOGLE_CLIENT_ID ?? '';
 export const CALENDAR_ID = import.meta.env?.VITE_CALENDAR_ID ?? '';
-export const WORKER_URL = (import.meta.env?.VITE_WORKER_URL ?? '').replace(/\/$/, '');
+const rawWorkerUrl = (import.meta.env?.VITE_WORKER_URL ?? '').trim().replace(/\/$/, '');
+// Blank or whitespace must read as "not set". Anything else resolves relative to
+// the Pages origin and 404s against GitHub instead of the Worker.
+export const WORKER_URL = /^https?:\/\//.test(rawWorkerUrl) ? rawWorkerUrl : '';
 
 export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/calendar.events';
 
