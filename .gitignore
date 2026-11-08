@@ -7,3 +7,5 @@ dist/
 *.log
 worker/.wrangler/
 worker/node_modules/
+.dev.vars
+.claude/settings.local.json
